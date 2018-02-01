@@ -26,20 +26,31 @@ export default StyleSheet.create({
   	display: 'flex',
   	alignItems: 'center',
   	justifyContent: 'center',
-  	
+  	position: 'relative',
   },
   w_text_item: {
+  	height: '100%',
   	width: '100%',
-  	textAlign: 'center'
+  	display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    zIndex: 3
   },
   w_cart: {
 		width: 60,
+		position: 'absolute',
 		height: '100%',
-		backgroundColor: '#e6e7e8'
+		backgroundColor: '#e6e7e8',
+		left: 0,
+		zIndex: 2
   },
   w_home: {
 		width: 60,
 		height: '100%',
-		backgroundColor: '#e6e7e8'
+		right: 0,
+		position: 'absolute',
+		backgroundColor: '#e6e7e8',
+		Index: 2
   }
 })

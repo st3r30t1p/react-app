@@ -41,14 +41,15 @@ export default class Content extends React.Component {
       </div>
     );
   }
-    _onSwipeLeftListener(){
-        console.log("Swiped left");
+    _onSwipeLeftListener(e){
+      var random_boolean = Math.random() >= 0.5;
+        console.log(random_boolean +" Swiped left " + e);
     }
-    _onSwipeRightListener(){
-        console.log("Swiped right");
+    _onSwipeRightListener(e){
+        console.log("Swiped right "+ e);
     }
     _onSwipeListener(e){
-        if (e[1]===0) console.log("Swipe x: "+e[0]);
+        //if (e[1]===0) console.log("Swipe x: "+e[0]);
       
     }
 }
