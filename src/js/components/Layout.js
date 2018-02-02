@@ -16,7 +16,7 @@ export default class Layout extends React.Component {
       'Red Wine', 
       'Mozzarella Cheese 150g',
       'Orange Juice 1l',
-      'Tomatoes']
+      'Tomatoes'],
     };
   }
 
@@ -36,7 +36,6 @@ export default class Layout extends React.Component {
   }
  
   render() {
-    
     const text = this.state.arr.map((v, k)=>{return <div key={k}>{v}</div>})
     return (
       <div>

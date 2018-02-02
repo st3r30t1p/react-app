@@ -9,20 +9,26 @@ export default StyleSheet.create({
     borderBottom: '1px solid #cececd',
     alignItems: 'center'
   },
+  swipe: {
+
+  },
   header_text: {
   	fontSize: 20,
   	margin: 0,
   	fontWeight: 700,
   	color: '#373435'
   },
-  block_item: {
-  	 ':last-child': {
+  swipe: {
+  	':last-child': {
          borderBottom: 'none'
         },
+  	borderBottom: '1px solid #e9eaea',
+  },
+  block_item: {
   	height: 60,
   	fontSize: 20,
   	fontWeight: 700,
-  	borderBottom: '1px solid #e9eaea',
+  	//borderBottom: '1px solid #e9eaea',
   	display: 'flex',
   	alignItems: 'center',
   	justifyContent: 'center',
@@ -30,12 +36,14 @@ export default StyleSheet.create({
   },
   w_text_item: {
   	height: '100%',
-  	width: '100%',
+  	width: '94%',
   	display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    zIndex: 3
+    zIndex: 3,
+    right: 60,
+    backgroundColor: '#fff'
   },
   w_cart: {
 		width: 60,
@@ -52,5 +60,11 @@ export default StyleSheet.create({
 		position: 'absolute',
 		backgroundColor: '#e6e7e8',
 		Index: 2
+  },
+  rendom_left: {
+  	left: 0
+  },
+  rendom_right: {
+  	left: 60
   }
 })
