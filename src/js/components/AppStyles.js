@@ -84,5 +84,28 @@ export default StyleSheet.create({
     position: 'absolute',
     zIndex: 3,
     right: '0'
+  },
+  footer: {
+    width: '100%',
+    height: '60px',
+    borderTop: '1px solid #cececd',
+  },
+  allItems: {
+    width: '50%',
+    height: '60px',
+    backgroundColor: '#f8f8f8',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    border: 'none'
+  },
+  onlyCart: {
+    width: '50%',
+    height: '60px',
+    backgroundColor: '#f8f8f8',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    border: 'none'
   }
 })

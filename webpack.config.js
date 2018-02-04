@@ -9,16 +9,21 @@ module.exports = {
   module: {
     loaders: [
       {
-
-        test: /\.(png|jpg|jsx?)$/,
-
+        test: /\.(jsx?)$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015', 'stage-0'],
           plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties'],
         }
-      }
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        loaders: [
+          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack-loader',
+        ],
+      },
     ]
   },
   output: {

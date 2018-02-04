@@ -17,37 +17,37 @@ export default class Content extends React.Component {
   }
 
   _onSwipeLeftListener(e, s){
-      this.setState({checked: e});
+    this.setState({checked: e});
   }
 
-   _onSwipeRightListener(e){
-      this.setState({checked: e});
+  _onSwipeRightListener(e){
+    this.setState({checked: e});
   } 
-  isActive(key){
-    const ind = this.state.checked;
+  isActive(key, status){
+     const ind = this.state.checked;
      if(ind === key) {
-      const selected = JSON.parse(JSON.stringify(this.state.dataItems));
+      return !status;
+      /* const selected = JSON.parse(JSON.stringify(this.state.dataItems));
       selected[ind].status = !selected[ind].status;
-      this.setState({dataItems: selected});
-    }
+      this.setState({dataItems: selected}); */
+    }  
   } 
 
-
-    render() {
-      
-      let element = this.state.dataItems.map((ind, key) => {
-        return <Title key={key}
-                      item={ind.name}
-                      isActive={ this.isActive(key) }
-                      checked={this.state.checked}
-                      onSwipeLeftListener={() => this._onSwipeLeftListener(key)}
-                      onSwipeRightListener={()=> this._onSwipeRightListener(key)}
-               />
-      }, this);
-        return (
-          <div>
-            {element}
-          </div>
-        );
-    }
+  render() {
+    console.log(this.state.checked);
+    let element = this.state.dataItems.map((ind, key) => {
+      return <Title key={key}
+      item={ind.name}
+      isActive={ this.isActive(key, ind.status) }
+      checked={this.state.checked}
+      onSwipeLeftListener={() => this._onSwipeLeftListener(key)}
+      onSwipeRightListener={()=> this._onSwipeRightListener(key)}
+      />
+    }, this);
+    return (
+      <div>
+        {element}
+      </div>
+    );
+  }
 }

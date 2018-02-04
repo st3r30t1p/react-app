@@ -10,20 +10,26 @@ export default class Layout extends React.Component {
       items: props.data
     };
   }
-componentWillMount() {
-  this.state.items.map(elem => {
+  componentWillMount() {
+    this.state.items.map(elem => {
       return elem.status = Math.random() >= 0.5;
     });
-}
+  }
 
- 
+  getAllItems() {
+    console.log('getAll');
+  }
+  getOnlyCart() {
+    console.log('getOnly');
+  }
+
   render() {
     return (
-      <div>
-        <Header/>
-        <Content dataItems={this.state.items}/>
-        <Footer />
+    <div>
+      <Header/>
+      <Content dataItems={this.state.items}/>
+      <Footer getAllItems={this.getAllItems.bind(this)} getOnlyCart={this.getOnlyCart.bind(this)} />
       </div>
-    );
+      );
   }
 }
