@@ -16,12 +16,6 @@ export default StyleSheet.create({
   	fontWeight: 700,
   	color: '#373435'
   },
-  /* swipe: {
-  	':last-child': {
-         borderBottom: 'none'
-        },
-  	borderBottom: '1px solid #e9eaea',
-  }, */
   wrapper_block: {
     width:'100%',
     height: '100%'
@@ -71,9 +65,6 @@ export default StyleSheet.create({
   rendom_left: {
   	right: '-12%'
   },
-  rendom_right: {
-  	left: 60
-  },
   red: {
     backgroundColor: 'red',
     height: '100%',
@@ -107,5 +98,13 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     border: 'none'
+  },
+  edit_table: {
+  	position: 'absolute',
+  	right: '3%'
+  },
+  add_item: {
+  	position: 'absolute',
+  	left: '3%'
   }
 })

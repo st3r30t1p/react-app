@@ -5,9 +5,7 @@ import Swipe from 'react-swipe-component';
 export default class Title extends React.Component {
 
   render() {
-  
   	const {item, checked} = this.props;
-  
     return (
     	<Swipe
                 nodeName="div"
