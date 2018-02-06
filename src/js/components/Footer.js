@@ -7,8 +7,8 @@ export default class Footer extends React.Component {
 		const { getAllItems, getOnlyCart } = this.props;
 		return (
 		<footer className={css(styles.footer)}>
-			<button onClick={getAllItems} className={css(styles.allItems)}>hg</button>
-			<button onClick={getOnlyCart} className={css(styles.onlyCart)}>cart</button>
+			<button onClick={getAllItems} className={css(styles.allItems)}></button>
+			<button onClick={getOnlyCart} className={css(styles.onlyCart)}></button>
 		</footer>
 		);
 	}

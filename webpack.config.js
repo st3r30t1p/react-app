@@ -18,11 +18,12 @@ module.exports = {
         }
       },
       {
-        test: /\.(gif|png|jpe?g|svg)$/i,
-        loaders: [
-          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack-loader',
-        ],
+        test: /\.(?:png|jpg|svg)$/,
+        loader: 'url-loader',
+        query: {
+        // Inline images smaller than 10kb as data URIs
+          limit: 10000
+        }
       },
     ]
   },

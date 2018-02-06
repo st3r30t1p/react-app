@@ -10,8 +10,7 @@ export default class Content extends React.Component {
         countRight: false,
         countLeft: false,
         items: props.data,
-        onlyCart: false,
-        
+        onlyCart: false
     }
     this.onSwipeLeftListener = this._onSwipeLeftListener.bind(this);
     this.onSwipeRightListener = this._onSwipeRightListener.bind(this);
@@ -31,7 +30,6 @@ export default class Content extends React.Component {
       selected[ind].status = !selected[ind].status;
       this.setState({selected});*/
       return status;
-  
   }
 
   addStatusForItems() {
@@ -49,37 +47,37 @@ export default class Content extends React.Component {
     this.setState({onlyCart: true});
   }
 
-  
   render() {
     const element = '';
     if(this.state.onlyCart !== false) {
-      this.element = this.state.items.filter( (el) => {
-        if(el.status === true) {
-          return el;
-        }
-      }).map((el, key) => {
-          return <Title 
-                    key={key}
-                    item={el.name}
-                    isActive={ this.isActive(el.status) }
-                    checked={this.state.checked}
-                    onSwipeLeftListener={() => this._onSwipeLeftListener(key)}
-                    onSwipeRightListener={()=> this._onSwipeRightListener(key)}
+      this.element = this.state.items.map((el) => {
+        return el.items.filter((et, k) => {
+          if(et.status === true) { 
+             return et;
+          }
+        }).map((e, i)=> {
+               return <Title 
+                        key={i}
+                        item={e.name}
+                        isActive={ this.isActive(e.status) }
+                        checked={this.state.checked}
+                        onSwipeLeftListener={() => this._onSwipeLeftListener(i)}
+                        onSwipeRightListener={()=> this._onSwipeRightListener(i)}
                   />
-        });
-    } else {
-          this.element = this.state.items.map((el, key) => {
-            el.items.forEach((e, i)=> {
-            return e.status = Math.random() >= 0.5;
+            });
       });
-          return <Title 
-                    key={key}
-                    item={el.name}
-                    isActive={ this.isActive(el.status) }
-                    checked={this.state.checked}
-                    onSwipeLeftListener={() => this._onSwipeLeftListener(key)}
-                    onSwipeRightListener={()=> this._onSwipeRightListener(key)}
+    }else{
+          this.element = this.state.items.map((el, key) => {
+            return el.items.map((e, i)=> {
+               return <Title 
+                        key={i}
+                        item={e.name}
+                        isActive={ this.isActive(e.status) }
+                        checked={this.state.checked}
+                        onSwipeLeftListener={() => this._onSwipeLeftListener(i)}
+                        onSwipeRightListener={()=> this._onSwipeRightListener(i)}
                   />
+            });
         });
       }
     return (

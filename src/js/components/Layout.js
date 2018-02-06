@@ -2,7 +2,8 @@ import React from "react";
 import Footer from "./Footer";
 import Content from "./Content";
 import Header from "./Header";
-
+import { css } from 'aphrodite/no-important';
+import styles from './AppStyles';
 
 export default class Layout extends React.Component {
   constructor(props) {
@@ -21,7 +22,8 @@ export default class Layout extends React.Component {
       showAddForm: false,
       value: '',
       arrVal: [],
-      id: 2
+      id: 2,
+      char: 24
     }
   }
     //Edit table click
@@ -33,25 +35,46 @@ export default class Layout extends React.Component {
     this.setState({showAddForm: true});
   }
   cancelClick() {
-    this.setState({editTable: false});
+    this.setState({editTable: true});
     this.setState({showAddForm: false});
   }
+  addItemDone() {
+    this.setState({editTable: false});
+  }
   setValue(input) {
-    this.setState({value: input.target.value})
+    if(input.target.value.length <= 24) {
+      var maxlength = input.target.value.substr(0, 24);
+        this.setState({value: maxlength});
+      if(input.target.value.length <= 24) {
+          this.setState({char: input.target.value.length});
+      }else if(input.target.value.length >= 0) {
+          this.setState({char: input.target.value.length});
+      }
+    }
   }
 
   addClickDone(e) {
     
     if(this.state.value){
-       this.state.data.push({'id': this.state.id++, 'name': this.state.value, 'items': [this.state.value]});
+       this.state.data.push({'id': this.state.id++, 'name': this.state.value, 'items': [{name: this.state.value, status: Math.random() >= 0.5}]});
        this.setState({ arrVal: this.state.arrVal });
-       this.setState({value:''});
+       this.setState({value:'', char: 24});
 
     }
     
   }
+  deleteBlockItem(key){
+        this.state.data.splice(key, 1);
+        this.setState({data: this.state.data});
+    }
+ 
   render() {
-    console.log(this.state.data);
+    const blockItem = this.state.data.map((val, key)=>{
+      return <div key={key} className={css(styles.wrap_block)}>
+             <button className={css(styles.delete)} onClick={this.deleteBlockItem.bind(this, key)}>-</button>
+              <div className={css(styles.block_name)}>{val.name}</div>
+             </div>
+    });
     if(this.state.editTable) {
         return (
               <div>
@@ -59,8 +82,9 @@ export default class Layout extends React.Component {
                  editTableClick={this.editTableClick.bind(this)}
                  addNewItem={this.addNewItem.bind(this)}
                  showAddForm={this.state.showAddForm}
+                 addItemDone={this.addItemDone.bind(this)}
                   />
-                   
+                   {blockItem}
                 <Footer/>
               </div>
         );
@@ -69,7 +93,11 @@ export default class Layout extends React.Component {
         return (
           <div>
             <Header showAddForm={this.state.showAddForm} cancelClick={this.cancelClick.bind(this)} addClickDone={this.addClickDone.bind(this)}/>
-            <input type='text' value={this.state.value} onChange={(input) => this.setValue(input)}/>
+            <div className={css(styles.input_block)}>
+              <p className={css(styles.input_text)} >Add new list item</p>
+              <input className={css(styles.input)} type='text' value={this.state.value} onChange={(input) => this.setValue(input)}/>
+              <p className={css(styles.count_text)}>Characters left {this.state.char}</p>
+            </div>
           </div>
         );
       }
@@ -80,4 +108,5 @@ export default class Layout extends React.Component {
       </div>
     );
   }
+   
 }
