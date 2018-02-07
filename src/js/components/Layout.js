@@ -56,7 +56,7 @@ export default class Layout extends React.Component {
   addClickDone(e) {
     
     if(this.state.value){
-       this.state.data.push({'id': this.state.id++, 'name': this.state.value, 'items': [{name: this.state.value, status: Math.random() >= 0.5}]});
+       this.state.data.push({'id': this.state.id++, 'name': this.state.value, 'items': [{id: (Math.random()*100)+1|10, name: this.state.value, status: Math.random() >= 0.5}]});
        this.setState({ arrVal: this.state.arrVal });
        this.setState({value:'', char: 24});
 

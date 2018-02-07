@@ -20,22 +20,43 @@ export default class Content extends React.Component {
   }
   //swipe event
   _onSwipeLeftListener(e){
-    this.setState({checked: e});
+   const arr = this.state.items;
+   for(var j=0; j<arr.length; j++) {
+    for(var i=0; i<arr[j].items.length; i++) {
+      if(e == arr[j].items[i].id) {
+        if(arr[j].items[i].status !== true) {
+          arr[j].items[i].status = !arr[j].items[i].status
+          arr[j].items[i].right = true
+          arr[j].items[i].left = false
+        }
+      }
+    }
   }
+  this.setState({swipedElem: e});
+}
   _onSwipeRightListener(e){
-    this.setState({checked: e});
+    const arr = this.state.items;
+    for(var j=0; j<arr.length; j++) {
+      for(var i=0; i<arr[j].items.length; i++) {
+        if(e == arr[j].items[i].id) {
+          if(arr[j].items[i].status !== false) {
+            arr[j].items[i].status = !arr[j].items[i].status
+            arr[j].items[i].right = true
+            arr[j].items[i].left = false
+          }
+        }
+      }
+    }
+    this.setState({swipedElem: e});
   } 
   isActive(status){
-      /*const selected = JSON.parse(JSON.stringify(this.state.items));
-      selected[ind].status = !selected[ind].status;
-      this.setState({selected});*/
       return status;
   }
 
   addStatusForItems() {
     this.state.items.map((elem, ind) => {
       elem.items.forEach((e, i)=>{
-      return e.status = Math.random() >= 0.5;
+      return (e.status = Math.random() >= 0.5, e.left = false, e.right = false);
       });
     });
   }
@@ -61,8 +82,8 @@ export default class Content extends React.Component {
                         item={e.name}
                         isActive={ this.isActive(e.status) }
                         checked={this.state.checked}
-                        onSwipeLeftListener={() => this._onSwipeLeftListener(i)}
-                        onSwipeRightListener={()=> this._onSwipeRightListener(i)}
+                        onSwipeLeftListener={() => this._onSwipeLeftListener(e.id)}
+                        onSwipeRightListener={()=> this._onSwipeRightListener(e.id)}
                   />
             });
       });
@@ -74,8 +95,8 @@ export default class Content extends React.Component {
                         item={e.name}
                         isActive={ this.isActive(e.status) }
                         checked={this.state.checked}
-                        onSwipeLeftListener={() => this._onSwipeLeftListener(i)}
-                        onSwipeRightListener={()=> this._onSwipeRightListener(i)}
+                        onSwipeLeftListener={() => this._onSwipeLeftListener(e.id)}
+                        onSwipeRightListener={()=> this._onSwipeRightListener(e.id)}
                   />
             });
         });

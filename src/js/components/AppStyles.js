@@ -42,7 +42,8 @@ export default StyleSheet.create({
     position: 'absolute',
     zIndex: 3,
     right: '12%',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    transition: '0.1s'
   },
   w_cart: {
 		width: '12%',
@@ -78,7 +79,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   rendom_left: {
-  	right: '-12%'
+  	right: '-12%',
   },
   red: {
     backgroundColor: 'white',
@@ -89,7 +90,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     position: 'absolute',
     zIndex: 3,
-    right: '0'
+    right: '0',
+    transition: '0.1s'
   },
   footer: {
     width: '100%',
